@@ -2,7 +2,7 @@
 #include <stdlib.h>
 struct Array
 {
- int A[10];
+ int A[20];
  int size;
  int length;
 }; 
@@ -266,6 +266,35 @@ void swaps(int *x,int *y){
 
     }
 
+    struct Array* Difference(struct Array *arr2,struct Array *arr1){
+        int i,j,k;
+        i=j=k=0;
+        struct Array* arr = (struct Array*)malloc(sizeof(struct Array));
+        while(i<arr2->length&&j<arr1->length){
+            if(arr2->A[i]<arr1->A[j]){
+            arr->A[k++]=arr2->A[i++];
+            }
+            else if(arr2->A[i]==arr1->A[j]){
+                               i++,j++;
+
+            }
+            else{
+                               j++;
+
+            }
+        }
+        for(;i<arr2->length;i++){
+            arr->A[k++]=arr2->A[i];
+        }
+        arr->length=k;
+        arr->size=10;
+        free(arr1);
+        free(arr2);
+        return arr;
+
+
+    }
+
 
 void Rearrange(struct Array *arr){
     int i=0;
@@ -285,13 +314,50 @@ void Rearrange(struct Array *arr){
     
 }
 
+int MissingElement(struct Array *arr){
+    int sum=0;
+    for(int i=0;i<arr->length;i++){
+         sum+=arr->A[i];
+    }
+    int n=arr->A[arr->length-1];
+    int fsum=(n*(n+1))/2;
+    return fsum-sum;
+}
+int MissingElementNon(struct Array arr){
+    int diff=arr.A[0];
+    for(int i=0;i<arr.length;i++){
+        if(arr.A[i]-i!=diff){
+            while(diff<arr.A[i]-i){
+         printf("The Element Is %d\n",i+diff);
+         diff++;
+            }
+        }
+    }
+}
+int missingElementUnsorted(struct Array arr) {
+    int n = max(arr);
+    int *B = (int *)malloc((n+1) * sizeof(int)); // Allocate an array of size n+1
+    for (int i = 0; i < n; i++) {
+        B[i] = 0;
+    }
+    for (int i = 0; i < arr.length; i++) {
+        int m = arr.A[i];
+        B[m]++;
+    }
 
-int main()
-{
-struct Array arr1={{2,3,4,7,10},10,5};
-struct Array arr2={{1,5,7,9,10},10,5};
-struct Array *arr;
-arr=interSection(&arr1,&arr2);
-Display(*arr);
-return 0;
+    for (int i = 0; i <= n; i++) {
+        if (B[i] == 0&&i!=0) {
+            free(B); // Free the dynamically allocated memory
+            return i;
+        }
+    }
+
+    free(B); // Free the dynamically allocated memory
+    return -1; // If no missing element is found
+}
+
+int main() {
+    struct Array arr = {{8, 3, 2, 4, 6, 1}, 20, 6};
+     printf("%d\n",missingElementUnsorted(arr));
+    return 0;
 }
