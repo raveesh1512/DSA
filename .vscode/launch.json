@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ArrayPassByReferenceExample",
+            "request": "launch",
+            "mainClass": "ArrayPassByReferenceExample",
+            "projectName": "UdemyDSA_1da2d279"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "UdemyDSA_1da2d279"
+        }
+    ]
+}
