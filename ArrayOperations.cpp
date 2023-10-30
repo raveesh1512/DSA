@@ -191,6 +191,8 @@ void swaps(int *x,int *y){
 
 }
 
+
+
     struct Array* mergeTwoArrays(struct Array *arr2,struct Array *arr1){
         int i,j,k;
         i=j=k=0;
@@ -355,9 +357,125 @@ int missingElementUnsorted(struct Array arr) {
     free(B); // Free the dynamically allocated memory
     return -1; // If no missing element is found
 }
+void duplicate(struct Array arr){
+    int ldup=0;
+    for (size_t i = 0; i < arr.length; i++)
+    {
+        if(arr.A[i]==arr.A[i+1]&&arr.A[i]!=ldup){
+            printf("%d is a duplicate\n",arr.A[i]);
+            ldup=arr.A[i];
+        }
+    }
+    
+}
+void dupCount(struct Array arr){
+    int i;
+    for(i=0;i<arr.length-1;i++){
+        if(arr.A[i]==arr.A[i+1]){
+           int  j=i+1;
+            while(arr.A[i]==arr.A[j]){ 
+                j++;
+                }
+            printf("%d is duplicate %d times\n",arr.A[i],j-i);
+            i=j-1;
+        }
+    }
+}
+
+void dupCheck(struct Array arr){
+    int *B=(int *) malloc((arr.A[arr.length-1])*sizeof(int));
+    for(int i=0;i<arr.A[arr.length-1];i++){
+         B[i]=0;
+    }
+    for(int i=0;i<arr.length;i++){
+        B[arr.A[i]]++;
+    }
+  for(int i=0;i<arr.A[arr.length-1];i++){
+       if(B[i]>1){
+         printf("%d is repeating %d times\n",i,B[i]);
+       }
+    }
+}
+
+void dupUnsorted(struct Array arr){
+     for(int i=0;i<arr.length-1;i++){
+        if(arr.A[i]!=-1){
+                    int count=1;
+
+        for(int j=i+1;j<arr.length;j++){
+            if(arr.A[i]==arr.A[j]){
+                count++;
+                arr.A[j]=-1;
+            }
+           
+        }
+         if(count>1){
+            printf("%d is repeat for %d times\n",arr.A[i],count);
+            }
+
+        }
+     }
+
+    }
+    void pairSum(struct Array arr,int sum){
+        for(int i=0;i<arr.length;i++){
+            for(int j=i+1;j<arr.length;j++){
+                if(arr.A[i]+arr.A[j]==sum){
+                   printf("%d+%d=%d\n",arr.A[i],arr.A[j],sum);
+                }
+            }
+        }
+    }
+    void pairSumHash(struct Array arr,int sum){
+        int n=max(arr);
+        int *B=(int *) malloc((n+1)*sizeof(int));
+        for(int i=0;i<n+1;i++){
+            B[i]=0;
+        }
+        for(int i=0;i<arr.length;i++){
+            if(B[sum-arr.A[i]]==1){
+              printf("%d+%d=%d\n",arr.A[i],sum-arr.A[i],sum);
+            }
+            B[arr.A[i]]++;
+
+        }
+    }
+    void sortedPairSum(struct Array arr,int sum){
+        int i=0;
+        int j=arr.length-1;
+        while(i!=j){
+            if(arr.A[i]+arr.A[j]>sum){
+                j--;
+            }
+            else if(arr.A[i]+arr.A[j]<sum){
+                i++;
+            }
+            else{
+                printf("%d+%d=%d\n",arr.A[i],arr.A[j],sum);
+                i++;
+                j--;
+            }
+        }
+    }
+
+    void minMax(struct Array arr){
+        int min=arr.A[0];
+        int max=arr.A[0];
+        for(int i=1;i<arr.length;i++){
+            if(min>arr.A[i]){
+                min=arr.A[i];
+            }
+            else if(max<arr.A[i]){
+                 max=arr.A[i];
+            }
+            
+                           }
+            printf("%d\n",min);
+            printf("%d\n",max);               
+    }
 
 int main() {
-    struct Array arr = {{8, 3, 2, 4, 6, 1}, 20, 6};
-     printf("%d\n",missingElementUnsorted(arr));
-    return 0;
+    struct Array arr = {{5,8,3,9,6,2,3,-1,3,12}, 20, 10};
+     minMax(arr);
+     return 0;
 }
