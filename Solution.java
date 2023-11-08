@@ -1,24 +1,22 @@
 public class Solution {
     
-   public static int maxProfit(int[] prices) {
-    int n = prices.length;
-    int[] buy = new int[n];
-    int[] sell = new int[n];
-
-    buy[0] = -prices[0];
-    sell[0] = 0;
-
-    for (int i = 1; i < n; i++) {
-        buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]);
-        sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
-    }
-
-    return sell[n - 1];
+    public static int jump(int[] nums) {
+        int max=0;
+        int j=0;
+        for(int i=0;i<nums.length;i++){
+           max=max+nums[i];
+           j++;
+           System.out.println(nums.length-1);
+           if(max==nums.length-1){
+               return j;
+           }
+        }
+        return j;
     }
 
         public static void main(String[] args) {
-        int[] arr={7,1,5,3,6,4};
-        System.out.println(maxProfit(arr));
+        int[] arr={2,3,1,1,4};
+        System.out.println(jump(arr));
         
     
     

@@ -1,3 +1,1 @@
-   for (int i = 0; i < n; i++) {
-        B[i] = 0;
-    }
+    // m.A=(int *) malloc(m.n*((m.n-1)/2*sizeof(int)));

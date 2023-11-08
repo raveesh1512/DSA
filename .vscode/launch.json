@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Solution",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "UdemyDSA_1da2d279"
+        },
+        {
+            "type": "java",
             "name": "ArrayPassByReferenceExample",
             "request": "launch",
             "mainClass": "ArrayPassByReferenceExample",
